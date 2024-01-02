@@ -12,21 +12,32 @@ Subtractor circuits take two binary numbers as input and subtract one binary num
 ## Half Subtractor Full Subtractor
 ## Half Subtractor
 The half-subtractor is a combinational circuit which is used to perform subtraction of two bits. It has two inputs, X (minuend) and Y (subtrahend) and two outputs D (difference) and B (borrow). To perform x - y, we have to check the relative magnitudes of x and y. If x ;;, y, we have three possibilities: 0 - 0 = 0, 1 - 0 = 1, and 1 - I = 0. The result is called the difference bit. If x < y, we have 0 - I, and it is necessary to borrow a 1 from the next higher stage. The I borrowed from the next higher stage adds 2 to the minuend bit, just as in the decimal system a borrow adds 10 to a minuend digit. With the minuend equal to 2, the difference becomes 2 - I = 1. The half-subtractor needs two outputs. One output generates the difference and will be designated by the symbol D. The second output, designated B for borrow, generates the binary signal that informs the next stage that a I has been borrowed.
-![half-subtractor9](https://user-images.githubusercontent.com/36288975/166112538-58c3bc7c-ee5d-4e6a-ac8d-8e8328efe27a.png)
+![image](https://github.com/Hema23013960/Experiment--03-Half-Subtractor-and-Full-subtractor/assets/154524429/674d0725-82d3-4471-8b23-0e293d6864b8)
+
 
 
 Sum = X'Y+XY' = X ⊕ Y
 Carry=X'Y
 
 ## Full Subtractor
-A full subtractor is a combinational circuit that performs subtraction involving three bits, namely minuend, subtrahend, and borrow-in . It accepts three inputs: minuend, subtrahend and a borrow bit and it produces two outputs: difference and borrow. 
-![full-subtractor6](https://user-images.githubusercontent.com/36288975/166112541-24c68359-3de8-4674-ae22-8272ffc385ed.png)
+A full subtractor is a combinational circuit that performs subtraction involving three bits, namely minuend, subtrahend, and borrow-in . It accepts three inputs: minuend, subtrahend and a borrow bit and it produces two outputs: difference and borrow. ![image](https://github.com/Hema23013960/Experiment--03-Half-Subtractor-and-Full-subtractor/assets/154524429/b0b2fecd-6af6-49fa-a496-79ad2deb067f)
+
+
+
 
 
 Diff = A ⊕ B ⊕ Bin B = A'Bin + A'B + BBin
 
 ## Procedure
+1.Use module projname(input,output) to start the Verilog programmming.
 
+2.Assign inputs and outputs using the word input and output respectively.
+
+3.Use defined keywords like wire,assign and required logic gates to represent the boolean expression.
+
+4.Use each output to represnt onre for differnce and the other for borrow.
+
+5.End the verilog program using keyword endmodule
 
 
 Write the detailed procedure here 
@@ -38,17 +49,31 @@ Program to design a half subtractor and full subtractor circuit and verify its t
 Developed by: 
 RegisterNumber:  
 */
+module project_4_1(a,b,borrow,diff);
+input a,b;
+output borrow,diff;
+assign borrow=~a&b;
+assign diff=a^b;
+endmodule   
 
-## Output:
 
+module project_4_2(a,b,bin,borrow,diff);
+input a,b,bin;
+output diff,borrow;
+assign diff=(a^b)^bin;
+assign borrow=((~a)&&bin)||(b&&bin)||((~a)&&b);
+endmodule
 ## Truthtable
+![image](https://github.com/Hema23013960/Experiment--03-Half-Subtractor-and-Full-subtractor/assets/154524429/2553ddb3-5c83-47d0-8782-fa7e16c3c062)
 
 
 
 ##  RTL realization
 
+![image](https://github.com/Hema23013960/Experiment--03-Half-Subtractor-and-Full-subtractor/assets/154524429/d391af4a-df60-4794-bef5-68e2e936ca5e)
 
 ## Timing diagram 
+![image](https://github.com/Hema23013960/Experiment--03-Half-Subtractor-and-Full-subtractor/assets/154524429/773fe3c8-2f58-43de-ba6a-3658a99ede9c)
 
 ## Result:
 Thus the half subtractor and full subtractor circuits are designed and the truth tables is verified using quartus software.
